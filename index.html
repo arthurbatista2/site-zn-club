@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZN Club</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> <!-- Font Awesome -->
+    <style>
+        /* Estilo global */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f06, #0044cc);
+            background-size: 400% 400%;
+            animation: gradientMove 10s ease infinite; /* Fundo dinâmico */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        /* Animação de fundo */
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Efeito de bolinhas de neve caindo */
+        @keyframes snowfall {
+            0% { top: -10%; }
+            100% { top: 100%; }
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10%;
+            z-index: 9999;
+            color: white;
+            font-size: 30px;
+            animation: snowfall linear infinite;
+        }
+
+        /* Efeito RGB para o nome */
+        @keyframes rgbEffect {
+            0% { color: red; }
+            25% { color: green; }
+            50% { color: blue; }
+            75% { color: yellow; }
+            100% { color: magenta; }
+        }
+
+        header {
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 50px 80px;
+            width: 100%;
+            max-width: 900px;
+            border-radius: 25px;
+            margin-top: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 5em;
+            font-weight: 700;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.4);
+            animation: rgbEffect 3s infinite; /* Efeito RGB */
+        }
+
+        .tree {
+            width: 80px;
+            height: 80px;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Christmas_tree_icon_2.svg/1200px-Christmas_tree_icon_2.svg.png');
+            background-size: cover;
+            margin-left: 20px;
+            transform: rotate(30deg);
+            filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.8));
+        }
+
+        .discord-btn {
+            text-decoration: none;
+            color: #fff;
+            background-color: #7289da;
+            padding: 25px;
+            border-radius: 50%;
+            font-size: 2.5em;
+            margin-top: 30px;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            position: relative;
+            margin-bottom: 20px; /* Espaçamento adicional abaixo do ícone */
+        }
+
+        .discord-btn:hover {
+            background-color: #5b6e96;
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .discord-btn::after {
+            content: "Discord";
+            font-size: 1em; /* Nome do Discord menor */
+            color: white;
+            position: absolute;
+            bottom: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            font-weight: bold;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .discord-btn:hover::after {
+            opacity: 1;
+        }
+
+        section {
+            margin-top: 30px;
+            font-size: 1.8em;
+            line-height: 1.6;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+            max-width: 800px;
+            width: 100%;
+            padding: 0 20px;
+            text-align: center;
+            animation: fadeIn 1s ease-out;
+        }
+
+        footer {
+            font-size: 1.2em;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4);
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: #ff6347;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        /* Contador de visitas */
+        #visitor-count {
+            font-size: 2em;
+            margin-top: 20px;
+            color: white;
+        }
+
+        /* Responsividade para telas menores */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 3.5em;
+            }
+
+            .discord-btn {
+                font-size: 1.5em;
+                padding: 20px;
+            }
+
+            section {
+                font-size: 1.5em;
+            }
+
+            .music-container {
+                width: 100%;
+                height: 250px;
+                top: 10%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>ZN Club</h1>
+    <div class="tree"></div> <!-- Árvore de Natal ao lado do nome -->
+</header>
+
+<section>
+    <p>Bem-vindo ao ZN Club! Conecte-se com nossa comunidade no servidor e aproveite.</p>
+    <div id="visitor-count">5 Visitas</div> <!-- Contador de visitas -->
+</section>
+
+<!-- Ícone do Discord com link -->
+<a href="https://discord.gg/6q7r2C8Ze2" target="_blank" class="discord-btn">
+    <i class="fab fa-discord"></i>
+</a>
+
+<!-- Rodapé com direitos autorais e privacidade -->
+<footer>
+    <p>&copy; 2024 ZN Club. Todos os direitos reservados. <a href="#">Política de Privacidade</a></p>
+</footer>
+
+<!-- Adicionando as bolinhas de neve -->
+<div class="snowflake" style="left: 10%; animation-duration: 10s;">
+    &#10052;
+</div>
+<div class="snowflake" style="left: 30%; animation-duration: 15s;">
+    &#10052;
+</div>
+<div class="snowflake" style="left: 50%; animation-duration: 12s;">
+    &#10052;
+</div>
+<div class="snowflake" style="left: 70%; animation-duration: 18s;">
+    &#10052;
+</div>
+<div class="snowflake" style="left: 90%; animation-duration: 14s;">
+    &#10052;
+</div>
+
+<!-- Script para contagem de visitas -->
+<script>
+    let visitCount = 5; // Número inicial de visitas
+
+    function updateVisitCount() {
+        visitCount++;
+        document.getElementById('visitor-count').textContent = visitCount + " Visitas";
+    }
+
+    // Atualiza a contagem de visitas a cada vez que a página é carregada
+    updateVisitCount();
+</script>
+
+</body>
+</html>
